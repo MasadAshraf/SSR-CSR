@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Text Example</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .center-text {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-text">
+    <h1>This text is centered! ... HEHE OSAMA</h1>
+    <p>Client Side Rendered words are here: <span id="csr">Loading...</span></p>
+  </div>
+  <script>
+    const csr = document.getElementById('csr');
+    async function render(){
+        const res = await fetch('/api', {
+            method : 'GET'
+        })
+        const {word} = await res.json()
+        csr.innerHTML = word;
+    }
+    render()
+  </script>
+</body>
+</html>
